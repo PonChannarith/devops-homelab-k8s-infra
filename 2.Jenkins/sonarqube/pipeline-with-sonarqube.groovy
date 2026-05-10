@@ -12,6 +12,17 @@ pipeline {
                 git 'https://github.com/keoKAY/reactjs-devop11-template.git'
             }
         }
+      
+//         stage('OWASP Dependency Check') {
+//             steps {
+//                 // Run the scan
+//                 dependencyCheck odcInstallation: 'dependencies-check', additionalArguments: '--scan "./"'
+                
+//                 // Publish the report to the Jenkins UI
+//                 dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+//             }
+// }
+
         stage("Check Code Quality in Sonarqube "){
             
             environment {
@@ -21,7 +32,6 @@ pipeline {
             steps{
                 withSonarQubeEnv(credentialsId: 'SONARQUBE_TOKEN', installationName: 'sonar-scanner') {
                 script{
-                
                     def projectKey = 'reactjs-devops11-template' 
                     def projectName = 'ReactjsDevOps11template'
                     def projectVersion = '1.0.0' 
@@ -38,9 +48,34 @@ pipeline {
             }
         }
 
+    // Check the quality gate ( passed or failed )
+        stage("Wait for Quality Gate "){
+            steps{
+                script{
+                    // We must configure webhook to let jenkins know when the result is return 
+                   def qg = waitForQualityGate()
+                    if ( qg.status != 'OK'){
+                        sh """
+                        echo " No need to build since you QG is failed "
+                        """
+                        currentBuild.result='FAILURE'
+                        error("Quality Gate is Failed !! ")
+                        return 
+                    }else {
+                        echo "Quality of code is okay!! "
+                        currentBuild.result='SUCCESS'
+                    }
+                }
 
+            }
+        }
        
         stage('Building Image') {
+            // when {
+            //     expression {
+            //         currentBuild.result=='SUCCESS'
+            //     }
+            // }
             steps {
                 sh """
                 docker build -t reactjs-demo-image  . 
@@ -50,6 +85,11 @@ pipeline {
 
         //  Push the docker image to the dockerhub 
         stage("Push Image to Dockerhub "){
+            //  when {
+            //     expression {
+            //         currentBuild.result=='SUCCESS'
+            //     }
+            // }
             steps{
                 withCredentials([usernamePassword(credentialsId: 'DOCKERHUB-CRED', passwordVariable: 'TOKEN', usernameVariable: 'USERNAME')]) {
 
