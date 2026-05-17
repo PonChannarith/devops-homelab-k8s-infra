@@ -1,0 +1,5 @@
+#!/bin/bash
+ping: 
+    ansible -i inventory.ini all -m ping
+ping-clients: 
+    ansible -i inventory.ini nfs-client -m ping 
