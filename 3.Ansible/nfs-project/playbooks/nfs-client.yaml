@@ -2,31 +2,8 @@
   hosts: nfs-client 
   become: true 
   tasks: 
-    - name: Update apt cache 
-      apt: 
-        update_cache: yes 
-    - name: Install NFS client packages 
-      apt: 
-        name: nfs-common 
-        state: present 
-    - name: Create a local mount point 
-      file: 
-        path: "{{ nfs_client.mount_path  }}"
-        state: directory 
-        group: "nogroup"
-        owner: "nobody"
-        mode: "0777"
-    - name: Mount the local point to the nfs srver 
-      mount: 
-        src: "{{nfs_server.ip}}:{{nfs_server.mount_path}}"
-        path: "{{nfs_client.mount_path}}"
-        fstype: nfs
-        opts: defaults,_netdev
-        state: mounted
-    - name: Persist after restart  
-      mount: 
-        src: "{{nfs_server.ip}}:{{nfs_server.mount_path}}"
-        path: "{{nfs_client.mount_path}}"
-        fstype: nfs 
-        opts: defaults,_netdev
-        state: present  
+  - name: Install common service 
+    include_tasks: ../tasks/common-task.yaml
+
+  - name: Setup NFS Client 
+    include_tasks: ../tasks/nfs-client-task.yaml 

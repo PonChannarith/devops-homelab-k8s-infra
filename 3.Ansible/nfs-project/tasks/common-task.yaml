@@ -1,0 +1,12 @@
+# Tasks that are commonly runs 
+- name: update apt cache 
+  apt: 
+    update-cache: true 
+  
+- name: Installing tree 
+  apt: 
+    name: 
+      - tree 
+      - nginx 
+     # - neofetch 
+    state: present 
