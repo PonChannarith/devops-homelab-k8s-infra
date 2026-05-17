@@ -39,3 +39,39 @@ ansible -i inventory.ini all -m command -a "date"
 # To uninstall the nginx on all the machine 
 ansible -i inventory.ini all -m apt -a "name=nginx state=absent" 
 ```
+
+
+# Date 17-May-2026 
+CaC = Configuration as Code 
+IaC = Infrastructure as Code 
+
+
+Write the code in order to install service , configure services using yaml ( ansible )
+
+What we have studied so far. 
+- How to install ansible 
+    - local machine 
+    - gcp instance 
+
+- Ansible can controll other machines, but it's agentless 
+
+- Inventory 
+    - folder or files that contains the information about the machhines that ansible controller will manage 
+    - ex. 
+        - prod/host.ini 
+        - dev/host.ini 
+    - Inventory file can be written using either `.ini` or `yaml` extension 
+
+- **Module** : a specific tasks 
+    ex. run command , copy file , create folder, create file 
+```bash 
+ansible -i inventory.ini groupA -m command -a "uptime" 
+```
+- Ad-hoc:  
+```bash
+ansible -i inventory.ini groupA -m command -a "uptime" 
+
+```
+- Ansible Playbooks 
+    - a yaml file that contains series `tasks` and `role` for performing a specific series of actions 
+    - ex. We have three machines , we want to install nginx on those machine 

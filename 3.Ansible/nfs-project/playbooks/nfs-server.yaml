@@ -1,0 +1,8 @@
+- name: Setup NFS server 
+  hosts: nfs-server
+  become: true 
+  tasks: 
+    - name: Update packages 
+      apt: 
+        update_cache: yes 
+      
