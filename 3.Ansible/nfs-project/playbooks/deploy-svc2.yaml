@@ -1,0 +1,18 @@
+
+- name: Deploy Spring Container 
+  hosts: localhost
+  become: true 
+  tasks: 
+  # docker installation must follow the documentation page 
+  # NOT from apt install docker , docker-compose 
+    - name: Starting demo service with docker compose module 
+      community.docker.docker_compose_v2: 
+        project_name: demo-app 
+        definition: 
+            version: '3.8'
+            services: 
+              nginx-svc: 
+                image: nginx:latest 
+                ports: 
+                  - "3003:80"
+

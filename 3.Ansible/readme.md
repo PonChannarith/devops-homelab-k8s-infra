@@ -75,3 +75,13 @@ ansible -i inventory.ini groupA -m command -a "uptime"
 - Ansible Playbooks 
     - a yaml file that contains series `tasks` and `role` for performing a specific series of actions 
     - ex. We have three machines , we want to install nginx on those machine 
+
+
+```bash 
+# docker compose v2 already installed , if you don't have it on your machine just use this command 
+
+ 
+ansible-galaxy collection install community.docker
+
+
+```

@@ -13,3 +13,6 @@ nfs-main:
 run1: 
     ansible-playbook -i inventory.ini \
         playbooks/deploy-svc.yaml
+run2: 
+    ansible-playbook -i inventory.ini \
+        playbooks/deploy-svc2.yaml
