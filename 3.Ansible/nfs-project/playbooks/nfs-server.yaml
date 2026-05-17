@@ -2,7 +2,10 @@
   hosts: nfs-server
   become: true 
   tasks: 
-    - name: Update packages 
-      apt: 
-        update_cache: yes 
+    - name: Printing all the values fron the variable 
+      debug: 
+        msg: "{{nfs_server.mount_path}} server_ip: {{nfs_server.ip }}"
+    # - name: Update packages 
+    #   apt: 
+    #     update_cache: yes 
       
