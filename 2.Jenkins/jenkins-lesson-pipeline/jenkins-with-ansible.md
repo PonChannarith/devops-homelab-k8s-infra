@@ -4,6 +4,8 @@ jenkins home = /var/lib/jenkins
 
 ```bash 
 sudo mkdir -p /var/lib/jenkins/.ssh
+
+# When you want to switch to the Jenkins User 
 sudo su - jenkins
 pwd
 
