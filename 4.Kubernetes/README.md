@@ -23,3 +23,23 @@ ansible-playbook -i inventory/sample/inventory.ini \
 ansible-playbook -i inventory/sample/inventory.ini \
     reset.yml -b
 ```
+
+*** 
+## Working with kubectl 
+```bash
+# after successful installation 
+sudo kubectl get pod 
+sudo kubectl get node 
+
+# to type the kubectl without sudo 
+# Create the local configuration directory
+mkdir -p $HOME/.kube
+
+# Copy the admin configuration file
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
+# Change ownership of the file to your current user
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+```

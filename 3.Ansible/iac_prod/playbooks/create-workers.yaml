@@ -50,9 +50,12 @@
         network_interfaces:
           - network:
               selfLink: "projects/{{google_project_id}}/global/networks/default"
+           # make sure that you already reserved the ip address inside the google console
             access_configs:
               - name: External NAT
                 type: ONE_TO_ONE_NAT
+                nat_ip: 
+                  address: "{{ reserved_ips[item.name] }}"
         tags:
           items:
             - http-server
