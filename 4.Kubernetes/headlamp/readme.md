@@ -9,7 +9,6 @@ Old Version: Kubernetes Dashboard ( Retired )
 kubectl create namespace headlamp
 helm repo list 
 
-
 helm repo add headlamp https://kubernetes-sigs.github.io/headlamp/
 helm repo update
 
