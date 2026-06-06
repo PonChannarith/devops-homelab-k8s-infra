@@ -1,0 +1,5 @@
+#!/bin/bash
+setup: 
+    cd kubespray && . venv/bin/activate && ansible-playbook -i inventory/sample/inventory.ini cluster.yml -b
+reset: 
+    cd kubespray && . venv/bin/activate && ansible-playbook -i inventory/sample/inventory.ini reset.yml -b 
