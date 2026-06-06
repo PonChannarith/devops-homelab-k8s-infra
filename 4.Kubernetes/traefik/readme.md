@@ -12,7 +12,6 @@ helm install traefik traefik/traefik \
  -n traefik \
  -f traefik-worker-values.yaml
 
-
 # check it 
 kubectl get pod -n traefik 
 kubectl get pod -n traefik -o wide 
