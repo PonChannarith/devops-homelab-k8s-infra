@@ -42,3 +42,7 @@ spec:
   - port: 80
     targetPort: 80
 
+
+
+# kubectl edit svc myapp
+# /blue -> green 

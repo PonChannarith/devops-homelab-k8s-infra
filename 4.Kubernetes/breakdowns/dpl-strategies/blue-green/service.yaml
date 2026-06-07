@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp
+spec:
+# tell which deployment to link 
+  selector:
+    app: myapp
+    replicas: blue 
+  ports:
+  - port: 80
+    targetPort: 80
