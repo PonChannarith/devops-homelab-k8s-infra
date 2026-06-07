@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+spec:
+  ingressClassName: traefik
+  rules:
+# this process might tbe able to automate 
+  - host: nginx.anajak-khmer.site
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+        # link to the service 
+          service:
+            name: nginx-svc
+            port: 
+              number: 80

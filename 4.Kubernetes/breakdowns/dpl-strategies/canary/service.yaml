@@ -9,6 +9,7 @@ spec:
   ports:
   - port: 80
     targetPort: 80
+    
 # kubectl scale deployment <deployment-name> --replicas=<number>
 # kubectl scale deployment nginx-dpl --replicas=0 
 # kubectl scale deploy react-dpl --replicas=4 
