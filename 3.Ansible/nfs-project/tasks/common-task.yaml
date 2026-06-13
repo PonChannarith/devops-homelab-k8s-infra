@@ -7,6 +7,6 @@
   apt: 
     name: 
       - tree 
-      - nginx 
+    #  - nginx 
      # - neofetch 
     state: present 

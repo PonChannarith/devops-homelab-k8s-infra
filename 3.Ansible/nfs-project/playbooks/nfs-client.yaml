@@ -4,6 +4,6 @@
   tasks: 
   - name: Install common service 
     include_tasks: ../tasks/common-task.yaml
-
+    when: false 
   - name: Setup NFS Client 
     include_tasks: ../tasks/nfs-client-task.yaml 

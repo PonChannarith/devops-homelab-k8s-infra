@@ -2,6 +2,7 @@
 - name: Install NFS client packages 
   apt: 
     name: nfs-common 
+    update_cache: yes 
     state: present 
 - name: Create a local mount point 
   file: 

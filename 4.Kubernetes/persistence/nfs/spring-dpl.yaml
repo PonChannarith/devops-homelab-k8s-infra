@@ -24,7 +24,7 @@ spec:
           - name: image-vol 
             mountPath: /app/src/main/resources/images
       volumes: 
-        - name: image-vol 
+        - name: image-vol
           nfs:
             server: 10.148.0.4 
             path: /srv/nfs_shared
