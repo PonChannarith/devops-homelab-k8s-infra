@@ -1,19 +1,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: host-based-ingress
+  name: path-based-ingress
   # Will use the clustterissuer(cert-manager obj) to 
   # request for the certificates from letsencrypt
   annotations: 
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-nginx-strip-prefix@kubernetescrd
 spec:
   ingressClassName: traefik
   # related to https config 
   tls:
     - hosts:
         - nginx.anajak-khmer.site 
-        - react-demo.anajak-khmer.site # Change to your actual domain name
-      secretName: demo-tls-cert
+      secretName: path-based-tls-cert
   rules:
 # this process might tbe able to automate 
   - host: react-demo.anajak-khmer.site
@@ -26,14 +26,10 @@ spec:
               name: reactjs-svc 
               port: 
                 number: 80  
-  - host: nginx.anajak-khmer.site
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-        # link to the service 
-          service:
-            name: nginx-svc
-            port: 
-              number: 80
+        - pathType: Prefix 
+          path: "/nginx"
+          backend:
+            service: 
+              name: nginx-svc 
+              port: 
+                number: 80  
