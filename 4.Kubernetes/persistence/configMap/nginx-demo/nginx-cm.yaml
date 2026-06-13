@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-cm
+data:
+  index.html: |-
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nginx Customized </title>
+    </head>
+    <body>
+
+        <h1 style="text-align: center;"> Welcome my Website </h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas unde maiores tempora perspiciatis inventore dolore velit in itaque sit. Cupiditate voluptas minus nesciunt accusamus iusto nostrum saepe adipisci ipsum nulla!</p>
+    </body>
+    </html>

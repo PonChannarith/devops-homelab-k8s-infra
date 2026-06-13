@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-custom-dpl
+spec:
+  selector:
+    matchLabels:
+      app: nginx-custom-app
+  template:
+    metadata:
+      labels:
+        app: nginx-custom-app
+    spec:
+      containers:
+      - name: nginx-custom-app
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts: 
+          - name: nginx-vol 
+            mountPath: /usr/share/nginx/html
+      volumes: 
+        - name: nginx-vol 
+          configMap: 
+            name: nginx-cm 
+            items: 
+              - key: index.html 
+                path: index.html # inside the nginx 
