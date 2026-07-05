@@ -5,7 +5,7 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
-    email: lyvanna544@gmail.com  # Change to your real email
+    email: ponchannarith@gmail.com  # Change to your real email
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-prod

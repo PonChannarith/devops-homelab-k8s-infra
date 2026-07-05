@@ -1,33 +1,29 @@
-# v1 -> nginx 
-# v2 -> 69966/earthdx:78 (reactjs )
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myapp-dpl
 spec:
-  replicas: 4 
-  # maxSurge: 25%
-  # maxUnavailability: 25%
-  # default is RollingUpdate 
-  # strategy: 
-  #   type: Recreate
-  stategy: 
-    rollingUpdate: 
-      maxSurge: 1 # 25%
-      maxUnavailable: 1 # 25% 
+  replicas: 4
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+
   selector:
     matchLabels:
-      app: demo-recreate
+      app: demo-rolling
+
   template:
     metadata:
       labels:
-        app: demo-recreate
+        app: demo-rolling
+
     spec:
       containers:
       - name: myapp-cont
         image: nginx
-        #image: 69966/earthdx:78
         ports:
         - containerPort: 80
 ---
@@ -37,12 +33,7 @@ metadata:
   name: nginx-svc
 spec:
   selector:
-    app: demo-recreate
+    app: demo-rolling
   ports:
   - port: 80
     targetPort: 80
-
-
-
-# kubectl edit svc myapp
-# /blue -> green 

@@ -1,0 +1,2 @@
+reder-prod:
+    helm template customized-chart --values customized-chart/prod-values.yaml 

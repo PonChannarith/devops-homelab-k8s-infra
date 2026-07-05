@@ -1,14 +1,10 @@
-# v1 -> nginx 
-# v2 -> 69966/earthdx:78 (reactjs )
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myapp-dpl
 spec:
-  replicas: 4 
-  # default is RollingUpdate 
-  strategy: 
+  replicas: 4
+  strategy:
     type: Recreate
   selector:
     matchLabels:
@@ -20,7 +16,6 @@ spec:
     spec:
       containers:
       - name: myapp-cont
-        #image: nginx
         image: 69966/earthdx:78
         ports:
         - containerPort: 80
@@ -28,11 +23,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-svc
+  name: myapp-svc
 spec:
   selector:
     app: demo-recreate
   ports:
   - port: 80
     targetPort: 80
-
