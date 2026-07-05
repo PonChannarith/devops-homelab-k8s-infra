@@ -49,8 +49,7 @@ helm repo add chart-name URL
 helm repo remove chart-name 
 
 ```
-- Understand the file structure 
-- Understand the syntax 
+- Understand the file structure  
 
 *** 
 ## Create our own chart from scratch 
